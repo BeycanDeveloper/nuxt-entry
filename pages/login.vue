@@ -14,7 +14,11 @@
 </template>
 
 <script lang="ts" setup>
-const user = useUserStore()
+const user = useUserStore();
+const { $modal } = useNuxtApp()
+
+$modal.success('Hello world')
+
 </script>
 
 <style lang="scss" scoped>
