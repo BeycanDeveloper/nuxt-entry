@@ -1,21 +1,25 @@
 type User = {
-    email: string | null;
-    name: string | null;
+    username: string | null;
+    role: string | null;
 }
 
-export const useUserStore = defineStore('config', () => {
+export const useUserStore = defineStore('user', () => {
     const user: Ref<User> = ref({
-        email: null,
-        name: null
+        username: null,
+        role: null
     });
 
     const isLoggedIn = computed(() => {
-        return user.value.email;
+        return Boolean(user.value.username);
     });
+
+    const set = (newUser: User) => {
+        user.value = newUser;
+    }
 
     const info = computed(() => {
         return user.value;
     });
 
-    return { isLoggedIn, info }
+    return { isLoggedIn, set, info }
 });

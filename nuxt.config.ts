@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
+    '@sidebase/nuxt-session',
     '@nuxtjs/tailwindcss',
     [
       '@pinia/nuxt',
@@ -12,6 +13,11 @@ export default defineNuxtConfig({
       }
     ]
   ],
+  session: {
+    session: {
+      expiryInSeconds: 60 * 60 * 24 * 7,
+    }
+  },
   pinia: {
     storesDirs: ['stores'],
   },

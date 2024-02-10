@@ -1,6 +1,6 @@
 const router = (require('express')).Router();
 
-router.get('/', (req, res) => {
+router.get('/list', (req, res) => {
     res.json([
         { id: 1, title: 'Blog 1' },
         { id: 2, title: 'Blog 2' },
