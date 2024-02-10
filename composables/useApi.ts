@@ -1,10 +1,10 @@
-export const useApi = async (path: string, params?: object, method: string = 'GET'): Promise<any>  => {
-    const { session } = await useSession();
+import Cookies from 'js-cookie';
 
+export const useApi = async (path: string, params?: object, method: string = 'GET'): Promise<any>  => {
     const response = await fetch(`http://localhost:3001/${path}`, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': session?.value?.token || '',
+            'Authorization': Cookies.get('token'),
         },
         method,
         body: JSON.stringify(params)

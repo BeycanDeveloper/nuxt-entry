@@ -1,8 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  css: [
+    '~/assets/css/fontawesome.min.css'
+  ],
   modules: [
-    '@sidebase/nuxt-session',
     '@nuxtjs/tailwindcss',
     [
       '@pinia/nuxt',
@@ -13,11 +15,6 @@ export default defineNuxtConfig({
       }
     ]
   ],
-  session: {
-    session: {
-      expiryInSeconds: 60 * 60 * 24 * 7,
-    }
-  },
   pinia: {
     storesDirs: ['stores'],
   },

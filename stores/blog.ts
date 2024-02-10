@@ -1,8 +1,8 @@
 type Blog = {
-    userId: number;
     id: number;
     title: string;
-    body: string;
+    content: string;
+    username: string;
 }
 
 type BlogList = Blog[];
@@ -15,10 +15,16 @@ export const useBlogStore = defineStore('blog', () => {
             return blog.value;
         }
 
-        const posts = await useJsonP('posts');
-
-        return (blog.value = posts.slice(0, 10));
+        return (blog.value = (await useApi('blog/list')).data);
     });
 
-    return { list }
+    const set = (data: BlogList) => {
+        blog.value = data;
+    }
+
+    const getOne = async (slug: string) => {
+        return (await useApi('blog/get/'+slug)).data;
+    }
+
+    return { list, set, getOne }
 });

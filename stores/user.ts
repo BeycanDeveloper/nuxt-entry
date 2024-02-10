@@ -21,5 +21,10 @@ export const useUserStore = defineStore('user', () => {
         return user.value;
     });
 
-    return { isLoggedIn, set, info }
+    const matchUser = (username: string) => {
+        if (isLoggedIn.value === false) return false;
+        return user.value.username === username;
+    }
+
+    return { isLoggedIn, set, info, matchUser }
 });
