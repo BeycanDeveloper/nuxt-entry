@@ -18,7 +18,7 @@
             </div>
         </li>
     </ul>
-    <CommentForm ref="commentForm"></CommentForm>
+    <CommentForm ref="commentForm" v-on:submitForm="submitForm"></CommentForm>
 </template>
 
 <script setup>
@@ -54,7 +54,22 @@
 
     comments.value[1].childs = childs.value;
 
+    const submitForm = (content) => {
+        comments.value.push({
+            id: comments.value.length + 1,
+            username: 'admin',
+            email: 'admin@example.com',
+            body: content,
+            date: 'Just now',
+            liked: 0
+        });
+    }
+
     const replyFor = (comment) => {
+        window.scrollTo({
+            top: document.getElementById("comment-form").offsetTop,
+            behavior: "smooth"
+        });
         commentForm.value.updateContent("@" + comment.username + " ");
     }
 

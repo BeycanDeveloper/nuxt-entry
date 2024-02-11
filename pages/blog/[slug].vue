@@ -1,7 +1,7 @@
 <template>
     <div class="max-w-screen-xl mx-auto">
         <div class="flex justify-between flex-wrap">
-            <main class="px-5 lg:w-8/12 md:w-12/12">
+            <main class="px-5 lg:w-8/12 w-12/12">
                 <article class="bg-white rounded-xl p-5 shadow-sm mb-5">
                     <h1 class="text-3xl font-semibold mb-5">{{ singleBlog.title }}</h1>
                     <div v-html="singleBlog.content"></div>
@@ -9,7 +9,7 @@
                 <comments></comments>
             </main>
 
-            <aside class="px-5 lg:w-4/12 md:w-12/12">
+            <aside class="px-5 lg:w-4/12 w-full">
                 <div class="bg-white rounded-xl p-5 shadow-sm">
                     <h2 class="text-lg font-semibold">Related Posts</h2>
                     <ul>
