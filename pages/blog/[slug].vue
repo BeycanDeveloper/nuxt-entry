@@ -31,9 +31,10 @@
         auth: true
     });
 
-    const data = ref(null);
     const route = useRoute();
     const blog = useBlogStore();
     const blogList = await blog.list;
-    const singleBlog = await blog.getOne(route.params.slug);
+    const singleBlog = await blog.getOne(
+        String(route.params.slug)
+    );
 </script>

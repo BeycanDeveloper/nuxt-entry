@@ -1,9 +1,8 @@
-import Cookies from 'js-cookie';
-
 export default defineNuxtRouteMiddleware(async (to) => {
     const user = useUserStore();
+    const token = useCookie('token');
     const checkAuth = async () => {
-        if (Cookies.get('token')) {
+        if (token.value) {
             const result = await useApi('auth/verify', {}, 'POST');
             if (result.status === 200) {
                 user.set(result.data.user);

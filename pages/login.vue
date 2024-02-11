@@ -43,13 +43,16 @@
 </template>
 
 <script lang="ts" setup>
-import Cookies from 'js-cookie';
-
 const username = ref('admin')
 const password = ref('adminPassword')
 
 const user = useUserStore()
 const { $modal } = useNuxtApp()
+
+
+const expirationDate = new Date()
+expirationDate.setDate(expirationDate.getDate() + 7)
+const token = useCookie('token', { expires: expirationDate })
 
 const login = async () => {
     if (username.value === '' || password.value === '') {
@@ -61,7 +64,7 @@ const login = async () => {
         navigateTo('/admin');
         user.set(result.data.user);
         $modal.success(result.data.message);
-        Cookies.set('token', result.data.token, { expires: 7 });
+        token.value = result.data.token;
     } else {
         $modal.error(result.data.message);
     }

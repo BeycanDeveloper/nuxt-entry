@@ -1,10 +1,9 @@
-import Cookies from 'js-cookie';
-
 export const useApi = async (path: string, params?: object, method: string = 'GET'): Promise<any>  => {
+    const token = useCookie('token')
     const response = await fetch(`http://localhost:3001/${path}`, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': Cookies.get('token'),
+            'Authorization': `${token.value}`
         },
         method,
         body: JSON.stringify(params)
